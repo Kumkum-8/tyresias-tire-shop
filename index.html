@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tyresias | Tire Shop</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="logo">T</div>
+        <div>
+          <h1>Tyresias</h1>
+          <small>Premium tire solutions</small>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-target="home">Home</button>
+        <button class="nav-btn" data-target="shop">Shop</button>
+        <button class="nav-btn" data-target="dashboard">Dashboard</button>
+        <button class="nav-btn" data-target="ai">AI Assistant</button>
+        <button class="nav-btn" data-target="admin">Admin</button>
+      </nav>
+
+      <div class="user-actions">
+        <button id="loginToggle" class="secondary-btn">Login</button>
+        <button id="logoutBtn" class="outline-btn hidden">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="panel hero-panel">
+        <div class="hero-copy">
+          <span class="tag">Smart Tire Store</span>
+          <h2>Find the right tyre for every road, every season.</h2>
+          <p>
+            Tyresias combines a modern tire shop catalog, business analytics, AI-powered research,
+            and profit tracking to help customers buy smarter and businesses grow faster.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-target="shop">Shop Now</button>
+            <button class="secondary-btn" data-target="dashboard">View Analytics</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Today’s Highlights</h3>
+          <ul>
+            <li>24 premium brands</li>
+            <li>12% profit margin forecast</li>
+            <li>AI tire recommendation active</li>
+            <li>Inventory tracking live</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="shop" class="panel hidden-section">
+        <div class="section-header">
+          <div>
+            <span class="tag">Storefront</span>
+            <h3>Available Tyres</h3>
+          </div>
+        </div>
+
+        <div class="filter-box">
+          <form id="filterForm" class="filter-form">
+            <label>
+              Brand
+              <select id="brandFilter">
+                <option value="All">All</option>
+              </select>
+            </label>
+
+            <label>
+              Type
+              <select id="typeFilter">
+                <option value="All">All</option>
+                <option value="All Season">All Season</option>
+                <option value="City">City</option>
+                <option value="Highway">Highway</option>
+                <option value="Sport">Sport</option>
+                <option value="Offroad">Offroad</option>
+                <option value="Eco">Eco</option>
+              </select>
+            </label>
+
+            <label>
+              Max Price
+              <input id="priceFilter" type="range" min="3000" max="8000" step="100" value="8000" />
+              <span id="priceLabel">₹8000</span>
+            </label>
+          </form>
+        </div>
+
+        <div class="shop-layout">
+          <div id="productGrid" class="product-grid"></div>
+          <aside class="cart-panel">
+            <h4>Cart Summary</h4>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-total-row">
+              <span>Total</span>
+              <strong id="cartTotal">₹0</strong>
+            </div>
+            <button id="placeOrderBtn" class="primary-btn wide-btn">Place Order</button>
+          </aside>
+        </div>
+      </section>
+
+      <section id="dashboard" class="panel hidden-section">
+        <div class="section-header">
+          <div>
+            <span class="tag">Business Insights</span>
+            <h3>Profit & Loss Dashboard</h3>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span>Revenue</span>
+            <strong id="revenueStat">₹0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Profit</span>
+            <strong id="profitStat">₹0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Inventory</span>
+            <strong id="stockStat">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Avg Price</span>
+            <strong id="avgPriceStat">₹0</strong>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h4>Brand Stock</h4>
+            <div id="brandChart" class="bar-chart"></div>
+          </div>
+
+          <div class="chart-card">
+            <h4>Tyre Type Mix</h4>
+            <div id="typeChart" class="bar-chart"></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <h4>Recent Orders</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Profit</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="ai" class="panel hidden-section">
+        <div class="section-header">
+          <div>
+            <span class="tag">AI + Search</span>
+            <h3>Tyre Intelligence Assistant</h3>
+          </div>
+        </div>
+
+        <div class="ai-layout">
+          <div class="ai-query-box">
+            <label for="aiQuery">Ask about tyre brands, sizes, or road conditions</label>
+            <input id="aiQuery" type="text" placeholder="Example: best tyre for wet roads" />
+            <button id="aiSearchBtn" class="primary-btn">Search</button>
+          </div>
+
+          <div class="ai-output">
+            <h4>AI Insights</h4>
+            <p id="aiSummary">
+              Tyresias AI can search market knowledge and cross-check it with the current inventory for better tyre buying decisions.
+            </p>
+            <div id="aiRecommendations" class="recommendation-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="admin" class="panel hidden-section">
+        <div class="section-header">
+          <div>
+            <span class="tag">Admin Panel</span>
+            <h3>Manage Inventory</h3>
+          </div>
+        </div>
+
+        <div class="admin-layout">
+          <form id="productForm" class="admin-form">
+            <h4>Add New Tyre</h4>
+            <input name="name" type="text" placeholder="Tyre name" required />
+            <input name="brand" type="text" placeholder="Brand" required />
+            <input name="type" type="text" placeholder="Type" required />
+            <input name="size" type="text" placeholder="Size" required />
+            <input name="price" type="number" placeholder="Price" required />
+            <input name="stock" type="number" placeholder="Stock" required />
+            <textarea name="description" rows="3" placeholder="Description"></textarea>
+            <button type="submit" class="primary-btn">Add Product</button>
+          </form>
+
+          <div class="admin-list">
+            <h4>Current Inventory</h4>
+            <div id="adminInventory" class="inventory-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section id="authModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="authTitle">Login</h3>
+          <button id="closeAuthModal" class="icon-btn">×</button>
+        </div>
+
+        <div class="auth-toggle">
+          <button class="tab-btn active" data-mode="login">Login</button>
+          <button class="tab-btn" data-mode="register">Register</button>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <input id="loginEmail" type="email" placeholder="Email" required />
+          <input id="loginPassword" type="password" placeholder="Password" required />
+          <button type="submit" class="primary-btn wide-btn">Login</button>
+        </form>
+
+        <form id="registerForm" class="auth-form hidden">
+          <input id="registerName" type="text" placeholder="Your name" required />
+          <input id="registerEmail" type="email" placeholder="Email" required />
+          <input id="registerPassword" type="password" placeholder="Password" required />
+          <button type="submit" class="primary-btn wide-btn">Register</button>
+        </form>
+      </div>
+    </section>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
